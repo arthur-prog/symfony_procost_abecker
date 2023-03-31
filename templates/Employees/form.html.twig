@@ -1,0 +1,109 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <main class="app-content">
+        <div class="app-title">
+            <div>
+                <h1><i class="fa fa-users"></i>&nbsp;Edition d'un employé</h1>
+            </div>
+            <ul class="app-breadcrumb breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{{ path('main_homepage') }}"><i class="fa fa-home fa-lg"></i></a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{{ path('employees_list') }}">Employés</a>
+                </li>
+                <li class="breadcrumb-item">Edition d'un employé</li>
+            </ul>
+        </div>
+        <div class="tile">
+
+            {{ block("flash_messages", "blocks/flash_messages.html.twig") }}
+
+            {{ form_start(form) }}
+
+            <form class="form-horizontal">
+                <section>
+                    <h3>Informations générales</h3>
+                    <div class="row mt-4">
+                        <div class="offset-md-4 col-md-8">
+                            <div class="form-group row">
+                                {{ form_label(form.firstName, null, {'label_attr': {'class': 'control-label col-md-3'} }) }}
+                                <div class="col-md-9">
+                                    {{ form_widget(form.firstName, {'attr': {'class': 'form-control'} }) }}
+                                    <div class="form-control-feedback text-danger">
+                                        {{ form_errors(form.firstName) }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                {{ form_label(form.lastName, null, {'label_attr': {'class': 'control-label col-md-3'} }) }}
+                                <div class="col-md-9">
+                                    {{ form_widget(form.lastName, {'attr': {'class': 'form-control'} }) }}
+                                    <div class="form-control-feedback text-danger">
+                                        {{ form_errors(form.lastName) }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                {{ form_label(form.mail, "Email", {'label_attr': {'class': 'control-label col-md-3'} }) }}
+                                <div class="col-md-9">
+                                    {{ form_widget(form.mail, {'attr': {'class': 'form-control'} }) }}
+                                    <div class="form-control-feedback text-danger">
+                                        {{ form_errors(form.mail) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <hr/>
+                <section>
+                    <h3>Production</h3>
+                    <div class="row mt-4">
+                        <div class="offset-md-4 col-md-8">
+                            <div class="form-group row">
+                                {{ form_label(form.job, 'Métier', {'label_attr': {'class': 'control-label col-md-3', 'for' : 'select-job'} }) }}
+                                <div class="col-md-9">
+                                    {{ form_widget(form.job, {'attr': {'class': 'form-control', 'id' : 'select-job'} }) }}
+                                    <div class="form-control-feedback text-danger">
+                                        {{ form_errors(form.job) }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                {{ form_label(form.dailyCost, 'Coût journalier (en €)', {'label_attr': {'class': 'control-label col-md-3', 'for' : 'select-job'} }) }}
+                                <div class="col-md-9">
+                                    {{ form_widget(form.dailyCost, {'attr': {'class': 'form-control', 'type' : 'number', 'min' : '0'} }) }}
+                                    <div class="form-control-feedback text-danger">
+                                        {{ form_errors(form.dailyCost) }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                {{ form_label(form.hiringDate, null, {'label_attr': {'class': 'control-label col-md-3'} }) }}
+                                <div class="col-md-9">
+                                    {{ form_widget(form.hiringDate, {'attr': {'class': 'form-control', 'type' : 'date'} }) }}
+                                    <div class="form-control-feedback text-danger">
+                                        {{ form_errors(form.hiringDate) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <hr/>
+                <div class="row">
+                    <div class="offset-md-6 col-md-6">
+                        <button type="submit" class="btn btn-success"><i class="fa fa-save"></i>Enregistrer</button>
+                    </div>
+                </div>
+                {{ form_rest(form) }}
+            </form>
+
+
+            {{ form_end(form) }}
+
+        </div>
+    </main>
+{% endblock %}

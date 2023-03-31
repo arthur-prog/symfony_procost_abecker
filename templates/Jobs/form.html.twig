@@ -1,0 +1,49 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <main class="app-content">
+        <div class="app-title">
+            <div>
+                <h1><i class="fa fa-book"></i>&nbsp;Edition d'un métier</h1>
+            </div>
+            <ul class="app-breadcrumb breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{{ path('main_homepage') }}"><i class="fa fa-home fa-lg"></i></a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{{ path('jobs_list') }}">Métiers</a>
+                </li>
+                <li class="breadcrumb-item">Edition d'un métier</li>
+            </ul>
+        </div>
+        <div class="tile">
+
+            {{ block("flash_messages", "blocks/flash_messages.html.twig") }}
+
+            {{ form_start(form) }}
+
+            <form class="form-horizontal">
+                <div class="form-group row">
+                    {{ form_label(form.name, null, {'label_attr': {'class': 'control-label col-md-3'} }) }}
+                    <div class="col-md-9">
+                        {{ form_widget(form.name, {'attr': {'class': 'form-control'} }) }}
+                        <div class="form-control-feedback text-danger">
+                            {{ form_errors(form.name) }}
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+                <div class="row">
+                    <div class="offset-md-6 col-md-6">
+                        <button type="submit" class="btn btn-success"><i class="fa fa-save"></i>Enregistrer</button>
+                    </div>
+                </div>
+                {{ form_rest(form) }}
+            </form>
+
+
+            {{ form_end(form) }}
+
+        </div>
+    </main>
+{% endblock %}

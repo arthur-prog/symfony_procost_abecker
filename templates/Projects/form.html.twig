@@ -1,0 +1,69 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <main class="app-content">
+        <div class="app-title">
+            <div>
+                <h1><i class="fa fa-laptop"></i>&nbsp;Edition d'un projet</h1>
+            </div>
+            <ul class="app-breadcrumb breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{{ path('main_homepage') }}"><i class="fa fa-home fa-lg"></i></a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{{ path('projects_list') }}">Projets</a>
+                </li>
+                <li class="breadcrumb-item">Edition d'un projet</li>
+            </ul>
+        </div>
+        <div class="tile">
+
+            {{ block("flash_messages", "blocks/flash_messages.html.twig") }}
+
+            {{ form_start(form) }}
+
+            <form class="form-horizontal">
+                <section>
+                    <div class="form-group row">
+                        {{ form_label(form.name, null, {'label_attr': {'class': 'control-label col-md-3'} }) }}
+                        <div class="col-md-9">
+                            {{ form_widget(form.name, {'attr': {'class': 'form-control'} }) }}
+                            <div class="form-control-feedback text-danger">
+                                {{ form_errors(form.name) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        {{ form_label(form.description, null, {'label_attr': {'class': 'control-label col-md-3'} }) }}
+                        <div class="col-md-9">
+                            {{ form_widget(form.description, {'attr': {'class': 'form-control'} }) }}
+                            <div class="form-control-feedback text-danger">
+                                {{ form_errors(form.description) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        {{ form_label(form.price, "Prix de vente (en €)", {'label_attr': {'class': 'control-label col-md-3'} }) }}
+                        <div class="col-md-9">
+                            {{ form_widget(form.price, {'attr': {'class': 'form-control', 'type' : 'number', 'min' : '0'} }) }}
+                            <div class="form-control-feedback text-danger">
+                                {{ form_errors(form.price) }}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <hr/>
+                <div class="row">
+                    <div class="offset-md-6 col-md-6">
+                        <button type="submit" class="btn btn-success"><i class="fa fa-save"></i>Enregistrer</button>
+                    </div>
+                </div>
+                {{ form_rest(form) }}
+            </form>
+
+
+            {{ form_end(form) }}
+
+        </div>
+    </main>
+{% endblock %}
